@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>my-app</title>
+    <meta name="description" content="just testing ">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module" src="/src/root-app/root-app.js" crossorigin></script>
+    <script type="module" src="/src/root-app/simple-component.js" crossorigin></script>
+    <script type="module" src="/src/root-app/properties-declaration.js" ></script>
+    <script type="module" src="/src/root-app/custom_component_lifecycle.js" ></script>
+    <script type="module" src="/src/root-app/app-layout-element.js" ></script>  
+    <script type="module" src="/src/root-app/app-route-element.js" ></script>
+    <script>
+      window.MyAppGlobals = { rootPath: '/' };
+    </script>
+    </head>
+  <body>
+    <!-- <root-app></root-app><hr/>
+    <simple-component></simple-component><hr/>
+    <properties-declaration></properties-declaration><hr/>
+    <custom-component-lifecycle></custom-component-lifecycle><hr/> 
+    <app-layout-elements></app-layout-elements> -->
+    <app-route-element></app-route-element>
+  </body>
+</html>
