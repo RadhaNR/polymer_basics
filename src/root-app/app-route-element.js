@@ -57,6 +57,9 @@ class AppRouteElement extends PolymerElement {
                 <div class="item"> <a name="param" href="param?id=124">Pass Param in url </a></div>
                 <div class="item"> <a name="ajax" href="ajax">Iron Ajax</a> </div>
                 <div class="item"> <a name="form" href="form">Iron Form</a> </div>
+                <div class="item"> <a name="map" href="map">Google Map</a> </div>
+                <div class="item"> <a name="gold" href="gold">Gold Elements</a> </div>
+                <div class="item"> <a name="events" href="events">Events</a> </div>
                 </iron-selector>
               </section>
           </app-drawer>
@@ -78,6 +81,9 @@ class AppRouteElement extends PolymerElement {
                 <iron-ajax-component name="ajax"></iron-ajax-component>
                 <iron-form-component name="form"></iron-form-component>
                 <not-found name="view404"></not-found>
+                <google-map-component name="map"></google-map-component>
+                <gold-elements name="gold"></gold-elements>
+                <event-component name="events"></event-component>
             </iron-pages>
 
           </app-header-layout>
@@ -111,7 +117,7 @@ class AppRouteElement extends PolymerElement {
         // Show 'view1' in that case. And if the page doesn't exist, show 'notfound'.
         if (!page) {
             this.page = 'simple';
-        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form'].indexOf(page) !== -1) {
+        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events'].indexOf(page) !== -1) {
             this.page = page;
         } else {
             this.page = 'notfound';
@@ -147,6 +153,15 @@ class AppRouteElement extends PolymerElement {
                 break;
             case 'form':
                 import('./iron-form-component.js');
+                break;
+            case 'map':
+                import('./google-map-component.js');
+                break;
+            case 'gold':
+                import('./gold-elements.js');
+                break;
+            case 'events':
+                import('./event-component.js');
                 break;
             case 'notfound':
                 import('./not-found.js');

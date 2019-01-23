@@ -21,6 +21,10 @@ class IronFormComponent extends PolymerElement {
             lastName: {
                 type: String
             },
+            skillSelected: {
+                type: String,
+                value: ''
+            },
             skills: {
                 type: Array,
                 value: [
@@ -42,11 +46,19 @@ class IronFormComponent extends PolymerElement {
     }
     _handleSubmit() {       
         if(this.$.demoForm.validate()) {
-            let obj = {firstName: this.firstName, lastName: this.lastName, checkbox: this.checkbox}
+            let obj = {firstName: this.firstName, lastName: this.lastName, checkbox: this.checkbox, skill: this.skillSelected}
             console.log(obj)
         }
     }
    
+    _itemSelected (e) {
+        //console.log(e.target.selectedItem.textContent)
+        var selectedItem = e.target.selectedItem;
+        if (selectedItem) {
+            this.skillSelected = selectedItem.value;
+        }
+    }
+
     static get template() {
         return html`
         <style>
@@ -58,12 +70,13 @@ class IronFormComponent extends PolymerElement {
             <form >
                 <paper-input name="firstName" value={{firstName}} label="First Name" required error-message="Pls enter First Name"></paper-input>
                 <paper-input type="password" name="lastName" value={{lastName}} label="Last Name" required  pattern="[a-zA-Z]*" error-message="letters only!"></paper-input>
-                <paper-checkbox name="checkbox" value="{{checkbox}}" required></paper-checkbox>
-                <paper-dropdown-menu label="Select" required>
+                <paper-checkbox name="checkbox" value="{{checkbox}}" required error-message="Pls check the checkbox"></paper-checkbox>
+                               
+                <paper-dropdown-menu name="skillSelected" label="Select Skill" required error-message="Pls select Skill" on-iron-select="_itemSelected">
                     <paper-listbox slot="dropdown-content" class="dropdown-content">
                         <dom-repeat items={{skills}}>
-                           <template> <paper-item>{{item.name}}</paper-item></template>
-                        </dom-repeat>                        
+                           <template> <paper-item value={{item.name}}>{{item.name}}</paper-item></template>
+                        </dom-repeat>
                     </paper-listbox>
                 </paper-dropdown-menu>
                 <paper-button raised class="custom" on-click="_handleSubmit">Submit</paper-button>
