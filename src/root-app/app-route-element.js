@@ -60,6 +60,7 @@ class AppRouteElement extends PolymerElement {
                 <div class="item"> <a name="map" href="map">Google Map</a> </div>
                 <div class="item"> <a name="gold" href="gold">Gold Elements</a> </div>
                 <div class="item"> <a name="events" href="events">Events</a> </div>
+                <div class="item"> <a name="data-binding" href="data-binding">Events</a> </div>
                 </iron-selector>
               </section>
           </app-drawer>
@@ -84,6 +85,7 @@ class AppRouteElement extends PolymerElement {
                 <google-map-component name="map"></google-map-component>
                 <gold-elements name="gold"></gold-elements>
                 <event-component name="events"></event-component>
+                <data-binding-component name="data-binding"></data-binding-component>
             </iron-pages>
 
           </app-header-layout>
@@ -117,7 +119,7 @@ class AppRouteElement extends PolymerElement {
         // Show 'view1' in that case. And if the page doesn't exist, show 'notfound'.
         if (!page) {
             this.page = 'simple';
-        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events'].indexOf(page) !== -1) {
+        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding'].indexOf(page) !== -1) {
             this.page = page;
         } else {
             this.page = 'notfound';
@@ -162,6 +164,9 @@ class AppRouteElement extends PolymerElement {
                 break;
             case 'events':
                 import('./event-component.js');
+                break;
+            case 'data-binding':
+                import('./data-binding-component.js');
                 break;
             case 'notfound':
                 import('./not-found.js');
