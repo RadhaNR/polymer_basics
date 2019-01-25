@@ -64,6 +64,7 @@ class AppRouteElement extends PolymerElement {
                 <div class="item"> <a name="object-array" href="object-array">Object & Array Mutation</a> </div>
                 <div class="item"> <a name="simple-observers" href="simple-observers">Simple Observers</a> </div>
                 <div class="item"> <a name="complex-observers" href="complex-observers">Simple Observers</a> </div>
+                <div class="item"> <a name="sub-props" href="sub-props">Sub Props change</a> </div>
                 </iron-selector>
               </section>
           </app-drawer>
@@ -92,6 +93,7 @@ class AppRouteElement extends PolymerElement {
                 <object-array-component name="object-array"></object-array-component>
                 <simple-observers-component name="simple-observers"></simple-observers-component>
                 <complex-observers-component name="complex-observers"></complex-observers-component>
+                <sub-props-component name="sub-props"></sub-props-component>
             </iron-pages>
 
           </app-header-layout>
@@ -125,7 +127,7 @@ class AppRouteElement extends PolymerElement {
         // Show 'view1' in that case. And if the page doesn't exist, show 'notfound'.
         if (!page) {
             this.page = 'simple';
-        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding', 'object-array', 'simple-observers', 'complex-observers'].indexOf(page) !== -1) {
+        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding', 'object-array', 'simple-observers', 'complex-observers', 'sub-props'].indexOf(page) !== -1) {
             this.page = page;
         } else {
             this.page = 'notfound';
@@ -182,6 +184,9 @@ class AppRouteElement extends PolymerElement {
                 break;
             case 'complex-observers':
                 import('./complex-observers-component.js');
+                break;
+            case 'sub-props':
+                import('./sub-properties-component.js');
                 break;
             case 'notfound':
                 import('./not-found.js');
