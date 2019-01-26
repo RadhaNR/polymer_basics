@@ -67,7 +67,11 @@ class AppRouteElement extends PolymerElement {
                 <div class="item"> <a name="computed-props" href="computed-props"> Computed Props </a> </div>
                 <div class="item"> <a name="template-repeat" href="template-repeat"> Template Repeat </a> </div>
                 <div class="item"> <a name="dom-if" href="dom-if"> Conditional Template </a> </div>
-
+                <div class="item"> <a name="template-constructor" href="template-constructor">Template on constructor</a></div>
+                <div class="item"> <a name="inherit-template" href="inherit-template">Inherit Template</a></div>
+                <div class="item"> <a name="override-template" href="override-template">Override Template</a></div>
+                <div class="item"> <a name="extend-template" href="extend-template">Extend Template</a></div>
+                <div class="item"> <a name="template-extension-point" href="template-extension-point">Template Extension Point</a></div>
                 </iron-selector>
               </section>
           </app-drawer>
@@ -99,6 +103,11 @@ class AppRouteElement extends PolymerElement {
                 <computed-props-component name="computed-props"></computed-props-component>
                 <template-repeat-component name="template-repeat"></template-repeat-component>
                 <dom-if-component name="dom-if"></dom-if-component>
+                <template-constructor name="template-constructor"></template-constructor>
+                <inherit-template name="inherit-template"></inherit-template>
+                <override-template name="override-template"></override-template>
+                <extend-template name="extend-template"></extend-template>
+                <template-extension-point name="template-extension-point"></template-extension-point>
             </iron-pages>
 
           </app-header-layout>
@@ -132,7 +141,7 @@ class AppRouteElement extends PolymerElement {
         // Show 'view1' in that case. And if the page doesn't exist, show 'notfound'.
         if (!page) {
             this.page = 'simple';
-        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding', 'object-array', 'simple-observers', 'complex-observers', 'sub-props', 'computed-props', 'template-repeat', 'dom-if'].indexOf(page) !== -1) {
+        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding', 'object-array', 'simple-observers', 'complex-observers', 'sub-props', 'computed-props', 'template-repeat', 'dom-if', 'template-constructor', 'inherit-template', 'override-template', 'extend-template', 'template-extension-point'].indexOf(page) !== -1) {
             this.page = page;
         } else {
             this.page = 'notfound';
@@ -199,7 +208,21 @@ class AppRouteElement extends PolymerElement {
             case 'dom-if':
                 import('./dom-if-component.js');
                 break;
-
+            case 'template-constructor':
+                import('./template-constructor-component.js');
+                break;
+            case 'inherit-template':
+                import('./inherit-template-component.js');
+                break;
+            case 'override-template':
+                import('./override-template.js');
+                break;
+            case 'extend-template':
+                import('./extend-template.js');
+                break;
+            case 'template-extension-point':
+                import('./template-extension-point.js');
+                break;
             case 'notfound':
                 import('./not-found.js');
                 break;
