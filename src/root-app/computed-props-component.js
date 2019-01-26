@@ -5,7 +5,7 @@ import '@polymer/paper-button/paper-button.js';
  * @customElement
  * @polymer
  */
-class ComplexObservesComponent extends PolymerElement {
+class ComputedPropsComponent extends PolymerElement {
     static get properties() {
         return {
             firstName: {
@@ -17,21 +17,16 @@ class ComplexObservesComponent extends PolymerElement {
                 value: 'N'
             },
             fullName: {
-                type: String
+                type: String,
+                computed: '_nameChanged(firstName, lastName)'
             }
             
         }
     }
 
-    static get observers() {
-        return [
-            '_nameChanged(firstName, lastName)'
-        ]
-    }
-
     _nameChanged(firstName, lastName) {
         console.log(firstName, lastName);
-        this.fullName = firstName + ' ' + lastName;
+        return firstName + ' ' + lastName;
     }
 
     _handleChange() {
@@ -41,7 +36,7 @@ class ComplexObservesComponent extends PolymerElement {
 
     static get template() {
         return html `
-            <div>Complex Observers component </div>
+            <div>Computed Properties </div>
             <div>First Name: {{firstName}}</div>
             <div>Last Name: {{lastName}}</div>
             <div>Full Name : {{fullName}} </div>
@@ -50,4 +45,4 @@ class ComplexObservesComponent extends PolymerElement {
     }    
 }
 
-window.customElements.define('complex-observers-component', ComplexObservesComponent);
+window.customElements.define('computed-props-component', ComputedPropsComponent);

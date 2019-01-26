@@ -5,9 +5,17 @@ import {PolymerElement, html} from "@polymer/polymer/polymer-element.js";
  * @polymer
  */
 class SimpleComponent extends PolymerElement {
+        
+    // declare your properties
+    static get properties() {
+        return {
+            // properties objects
+        }
+    }
+    // template
     static get template() {
         return html `
-            <div>Simple component </div>
+            <div>Custom component </div>
         `;
     }    
 }

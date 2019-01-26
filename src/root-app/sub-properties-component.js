@@ -36,9 +36,19 @@ class SubPropsComponent extends PolymerElement {
 
     _ObjChange() {
         //console.log(this.userObj.firstName)
-        //this.userObj.firstName = this.userObj.firstName + 1; // unobservable change
-        this.set('userObj.firstName', this.userObj.firstName + 1);   // use "set" method to observe the sub-properties change
-        this.set('userObj.lastName', this.userObj.lastName + 1);   // use "set" method to observe the sub-properties change
+
+        //***** unobservable change  ****
+        //this.userObj.firstName = this.userObj.firstName + 1; 
+       
+        // ******** use "set" method to observe the sub-properties change******        
+        //this.set('userObj.firstName', this.userObj.firstName + 1);  
+        //this.set('userObj.lastName', this.userObj.lastName + 1);   // use "set" method to observe the sub-properties change
+
+        // ***** Batch multiple properties changes *****
+        this.setProperties({
+            'userObj.firstName': this.userObj.firstName + 1,
+            'userObj.lastName': this.userObj.lastName + 1
+        });
     }
 
     // array mutation methods - > 
@@ -49,6 +59,7 @@ class SubPropsComponent extends PolymerElement {
         // splice(path, index, removeCount, [item1, ..., itemN])
 
     _updateItem() {
+        // When your using "set" or "notifyPath" method, you need to specify exact path. 
         this.set('productArry.1.name', Math.random());
         //this.set('productArry.1.name', this.productArry[1].name + Math.random());
     }
