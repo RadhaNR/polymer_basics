@@ -72,6 +72,7 @@ class AppRouteElement extends PolymerElement {
                 <div class="item"> <a name="override-template" href="override-template">Override Template</a></div>
                 <div class="item"> <a name="extend-template" href="extend-template">Extend Template</a></div>
                 <div class="item"> <a name="template-extension-point" href="template-extension-point">Template Extension Point</a></div>
+                <div class="item"> <a name="custom-css-props" href="custom-css-props">Custom CSS Props</a></div>
                 </iron-selector>
               </section>
           </app-drawer>
@@ -108,6 +109,7 @@ class AppRouteElement extends PolymerElement {
                 <override-template name="override-template"></override-template>
                 <extend-template name="extend-template"></extend-template>
                 <template-extension-point name="template-extension-point"></template-extension-point>
+                <custom-css-props name="custom-css-props"></custom-css-props>
             </iron-pages>
 
           </app-header-layout>
@@ -141,7 +143,7 @@ class AppRouteElement extends PolymerElement {
         // Show 'view1' in that case. And if the page doesn't exist, show 'notfound'.
         if (!page) {
             this.page = 'simple';
-        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding', 'object-array', 'simple-observers', 'complex-observers', 'sub-props', 'computed-props', 'template-repeat', 'dom-if', 'template-constructor', 'inherit-template', 'override-template', 'extend-template', 'template-extension-point'].indexOf(page) !== -1) {
+        } else if (['simple', 'props', 'layout', 'lifecycle', 'param', 'ajax', 'form', 'map', 'gold', 'events', 'data-binding', 'object-array', 'simple-observers', 'complex-observers', 'sub-props', 'computed-props', 'template-repeat', 'dom-if', 'template-constructor', 'inherit-template', 'override-template', 'extend-template', 'template-extension-point', 'custom-css-props'].indexOf(page) !== -1) {
             this.page = page;
         } else {
             this.page = 'notfound';
@@ -222,6 +224,9 @@ class AppRouteElement extends PolymerElement {
                 break;
             case 'template-extension-point':
                 import('./template-extension-point.js');
+                break;
+            case 'custom-css-props':
+                import('./custom-css-props.js');
                 break;
             case 'notfound':
                 import('./not-found.js');
