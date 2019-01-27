@@ -21,6 +21,7 @@
   <script type="module" src="/src/root-app/custom_component_lifecycle.js"></script>
   <script type="module" src="/src/root-app/app-layout-element.js"></script>
   <script type="module" src="/src/root-app/app-route-element.js"></script>
+  <script type="module" src="/src/root-app/shadow-dom-style.js"></script>
   <script>
     window.MyAppGlobals = { rootPath: '/' };
   </script>
@@ -28,6 +29,9 @@
     html {
       --color: blue;
       --default-color: red;
+    }
+    .myclass {
+      color: blue;
     }
   </style>
 </head>
@@ -39,6 +43,8 @@
     <custom-component-lifecycle></custom-component-lifecycle><hr/> 
     <app-layout-elements></app-layout-elements> -->
   <app-route-element></app-route-element>
-</body>
+  <!-- <shadow-dom-style></shadow-dom-style>
+  
+  <p class="myclass">I am outside of <code>custom-element</code>. Because of encapsulation, <code>custom-element</code>'s styles won't leak to me.</p> -->
 
 </html>
