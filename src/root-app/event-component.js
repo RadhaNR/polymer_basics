@@ -8,6 +8,17 @@ import '@polymer/paper-button/paper-button.js';
  */
 class EventComponent extends PolymerElement {
 
+	static get properties() {
+		return {
+			a: {
+				type: Object,
+				value: {
+					path: '/simple1'
+				},
+				notify: true
+			}
+		}
+	}
     ready() {
         super.ready();
         this.addEventListener('get-data', this._getData);
@@ -50,6 +61,13 @@ class EventComponent extends PolymerElement {
     _getData(e) {
         console.log(e.detail);
     }
+	_redirect() {
+		/*console.log(this.a);
+		this.set('a.path', '/simple');
+		console.log(this.a);*/
+		window.history.pushState({}, null, '/simple');
+		window.dispatchEvent(new CustomEvent('location-changed'));
+	}
     static get template() {
         return html `
             <div id="customEleEvent">
@@ -60,6 +78,8 @@ class EventComponent extends PolymerElement {
                 <button id="addEvent"> Add Event</button>
                 <hr/>
                 <paper-button on-click="_handleCustomEvent">Fire Custom Event</paper-button>
+				
+				<paper-button on-click="_redirect"> Redirect</paper-button>
             </div>
         `;
     }    

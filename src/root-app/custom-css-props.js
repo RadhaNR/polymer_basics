@@ -11,7 +11,7 @@ class CustomCssProps extends PolymerElement {
         <custom-style>  
           <style>         
             div{
-                color: var(--color, var(--default-color));
+                color: var(--color, var(--defaultColor));
             }
            </style>
         </custom-style>

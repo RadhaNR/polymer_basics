@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>root-app test</title>
+
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
+
+    <script type="module" src="../../src/root-app/iron-form-component.js"></script>
+  </head>
+  <body>
+
+    <test-fixture id="IronFromFixture">
+      <template>
+        <iron-form-component></iron-form-component>
+      </template>
+    </test-fixture>
+
+   
+    <script>
+      suite('When "Iron Form" component is given', function() {  
+		
+	  
+	  
+		var element, elementShadowRoot;
+		 
+		setup(function() {
+			element = fixture('IronFromFixture');		
+			elementShadowRoot = element.shadowRoot;
+			var spySubmit = sinon.spy(element, 'submit')
+			var spyReset = sinon.spy(element, 'reset')
+		});
+		test('Initialize and display firstName field', function() {			
+			var eleFirstName = elementShadowRoot.querySelectorAll('#firstName');
+			assert.exists(eleFirstName);
+			//assert.equal(eleFirstName.getAttribute('error-message'),"Pls enter First Name");
+		}); 		
+
+		test('Initialize and display lastName field', function() {
+			var eleLastName = elementShadowRoot.querySelectorAll('#lastName');
+			assert.exists(eleLastName);
+		}); 
+		test('Initialize and display Button', function() {
+			var eleButton = elementShadowRoot.querySelector('paper-button');
+			assert.exists(eleButton);
+			assert.isTrue(eleButton.hasAttribute('raised'));
+			assert.equal(eleButton.innerHTML, 'Submit');
+		}); 
+		
+		suite('When submit button is clicked without entering the values', function() {
+			test('validate the form', function(done) {
+				var eleButton = elementShadowRoot.querySelector('paper-button');
+				var form = elementShadowRoot.querySelector('iron-form');
+				
+				var firstNameError = elementShadowRoot.querySelector('#firstName paper-input-error');
+				var lastNameError = elementShadowRoot.querySelector('#lastName paper-input-error');
+				
+				
+				flush(function() {
+					eleButton.click();
+				    assert.equal(form.validate(), false);	
+					assert.equal(firstNameError.innerHTML, 'Pls enter First Name');
+					assert.equal(lastNameError.innerHTML, 'Pls enter last Name');
+					done();
+				});				
+			});
+		});
+		
+		suite('When submit button is clicked after entering the values', function() {
+			test.only('validate the form', function(done) {
+				
+				flush(function() {
+					var eleButton = elementShadowRoot.querySelector('paper-button');
+					var form = elementShadowRoot.querySelector('iron-form');
+					element.firstName = 'Radha';
+					element.lastName = 'N';
+					
+					eleButton.click();
+				    assert.equal(form.validate(), true);					
+					done();			
+				
+				});				
+			});
+		});
+		
+      });
+    </script>
+
+
+  </body>
+</html>

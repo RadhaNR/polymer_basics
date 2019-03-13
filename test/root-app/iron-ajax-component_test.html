@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>root-app test</title>
+
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
+	<script src="../../node_modules/sinon/pkg/sinon.js"></script>
+	
+    <script type="module" src="../../src/root-app/iron-ajax-component.js"></script>
+  </head>
+  <body>
+
+    <test-fixture id="IronAjaxFixture">
+      <template>
+        <iron-ajax-component></iron-ajax-component>
+      </template>
+    </test-fixture>
+
+   
+    <script>
+      suite('When "Iron Ajax" component is given', function() {  
+	  
+		var element, elementShadowRoot, server;
+		var responseHeaders = {
+			json: { 'Content-Type': 'application/json' }
+		};
+		setup(function() {
+				
+			elementShadowRoot = element.shadowRoot;
+			server = sinon.fakeServer.create();
+			server.respondWith('GET','https://reqres.in/api/users/', [200,          responseHeaders.json,          '{"success":true}'        ]);
+			element = fixture('IronAjaxFixture');	
+		});
+		
+		teardown(function() {
+		  server.restore();
+		});
+	
+		test('<Iron-Ajax>', function() {
+		   var ironElement = elementShadowRoot.querySelector('iron-ajax');
+			assert.exists(ironElement);
+		});
+		
+		test('Call Iron Ajax', function() {
+		   var ironElement = elementShadowRoot.querySelector('iron-ajax');
+			ironElement = ajax.generateRequest();
+			server.respond();
+			assert.equal(ironElement.response, ok);
+			assert.equal(ironElement.response.data.length, 3);
+			assert.equal(1+2, 3);
+		});
+						
+			
+		});
+		
+				
+      });
+    </script>
+
+
+  </body>
+</html>

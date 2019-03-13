@@ -68,11 +68,11 @@ class IronFormComponent extends PolymerElement {
         </style>
         <iron-form id="demoForm">
             <form >
-                <paper-input name="firstName" value={{firstName}} label="First Name" required error-message="Pls enter First Name"></paper-input>
-                <paper-input type="password" name="lastName" value={{lastName}} label="Last Name" required  pattern="[a-zA-Z]*" error-message="letters only!"></paper-input>
-                <paper-checkbox name="checkbox" value="{{checkbox}}" required error-message="Pls check the checkbox"></paper-checkbox>
+                <paper-input name="firstName" value={{firstName}} label="First Name" required error-message="Pls enter First Name" id="firstName"></paper-input>
+                <paper-input type="password" name="lastName" value={{lastName}} label="Last Name" required  pattern="[a-zA-Z]*" error-message="letters only!" id="lastName"></paper-input>
+                <paper-checkbox name="checkbox" value="{{checkbox}}" ></paper-checkbox>
                                
-                <paper-dropdown-menu name="skillSelected" label="Select Skill" required error-message="Pls select Skill" on-iron-select="_itemSelected">
+                <paper-dropdown-menu name="skillSelected" label="Select Skill"  on-iron-select="_itemSelected">
                     <paper-listbox slot="dropdown-content" class="dropdown-content">
                         <dom-repeat items={{skills}}>
                            <template> <paper-item value={{item.name}}>{{item.name}}</paper-item></template>

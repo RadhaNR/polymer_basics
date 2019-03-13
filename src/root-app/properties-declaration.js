@@ -6,26 +6,7 @@ class PropertiesDeclaration extends PolymerElement {
     constructor() {
         super();
         this.defaultData = 'Pls find the below Information'; // default in constructor
-    }
-    static get template() {
-        return html`
-            <div>
-                <div>[[defaultData]] :</div>
-                <div>Name : [[name]]</div>
-                <div>Age: {{age}}</div>
-                <div>Exist in India: [[isExist]]</div>
-                <div>Full Name: "[[fullName.name]]"</div>
-
-                Locations:
-                <dom-repeat items={{locations}}>
-                    <template>
-                    [[index]] : [[item.locationName]]
-                    </template>
-                </dom-repeat>
-
-            </div>
-        `;
-    }
+    }    
 
     static get properties() {
         return {
@@ -55,6 +36,26 @@ class PropertiesDeclaration extends PolymerElement {
             },
             defaultData: String
         }
+    }
+
+    static get template() {
+        return html`
+            <div>
+                <h1>[[defaultData]] :</h1>
+                <span>Name : [[name]]</span>
+                <div id="age">Age: {{age}}</div>
+                <div id="isExist">Exist in India: [[isExist]]</div>
+                <div class="fullName">Full Name: "[[fullName.name]]"</div>
+
+                Locations:
+                <dom-repeat items={{locations}}>
+                    <template>
+                    <li>[[index]] : [[item.locationName]]</li>
+                    </template>
+                </dom-repeat>
+
+            </div>
+        `;
     }
 }
 

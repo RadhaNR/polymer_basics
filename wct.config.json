@@ -1,0 +1,24 @@
+{
+  "plugins": {
+    "local": {
+      "skipSeleniumInstall": true
+    }
+    "sauce": {
+      "disabled": true
+    },
+    "xunit-reporter": {
+      "output": "./reports/testfile.xml"
+    },
+    "istanbul": {
+      "dir": "./reports/coverage",
+      "reporters": ["text-summary", "lcov", "cobertura"],
+      "include": [
+        "**/*.js"
+      ],
+      "exclude": [
+        "polymer/polymer.js",
+        "platform/platform.js"
+      ]
+    }
+  }
+}

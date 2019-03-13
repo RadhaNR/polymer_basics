@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>root-app test</title>
+
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
+
+    <script type="module" src="../../src/root-app/properties-declaration.js"></script>
+  </head>
+  <body>
+
+    <test-fixture id="PropertyDeclarationFixture">
+      <template>
+        <properties-declaration></properties-declaration>
+      </template>
+    </test-fixture>
+
+   
+    <script>
+      describe('When "Property Declaration" component is given', function() {
+		
+		var element, elementShadow;
+		
+		beforeEach(function() {
+			element = fixture('PropertyDeclarationFixture');
+			elementShadow = element.shadowRoot;
+		});		
+		it('should initialize the properties', function() {			
+			var arr = [
+                    { locationName: "Bangalore" },
+                    { locationName: "Chennai" },
+                    { locationName: "Pune" }
+                ];
+			assert.equal(element.name, 'HCL');
+			assert.equal(element.age, 42); 
+			assert.equal(element.isExist, 'Yes');
+			assert.deepEqual(element.fullName, { name: 'HCL Technologies' });
+			assert.equal(element.locations.length, arr.length);
+			assert.equal(element.defaultData, 'Pls find the below Information');
+		});
+        
+		it('render defaultData', function() {			
+			var dataElement = elementShadow.querySelector('h1');
+			assert.equal(dataElement.innerHTML, element.defaultData + ' :');
+		});
+		
+		it('render name', function() {
+			var nameElement = elementShadow.querySelector('span');
+			assert.equal(nameElement.innerHTML, 'Name : '+element.name)
+		});
+		
+		it('render new name', function(done) {
+			flush(function() {			
+				element.name = 'XYZ';
+				var nameElement = elementShadow.querySelector('span');
+				assert.equal(nameElement.innerHTML, 'Name : '+element.name);
+				done();
+			})
+		});
+		
+		
+		it('render age', function() {
+			var ageElement = elementShadow.querySelector('#age');
+			assert.equal(ageElement.innerHTML, 'Age: '+element.age);
+		});
+		
+		
+		it('render isExist', function() {
+			var existElement = elementShadow.querySelector('#isExist');
+			assert.equal(existElement.innerHTML, 'Exist in India: '+element.isExist);
+		});
+		
+		it('render fullName', function() {
+			var fullNameElement = elementShadow.querySelector('.fullName');
+			assert.equal(fullNameElement.innerHTML, 'Full Name: "'+element.fullName.name + '"');
+		});		
+		
+		it('display list of location name', function(done) {			
+			flush(function() {
+				var items = elementShadow.querySelectorAll('li');
+				assert.equal(items.length, element.locations.length);
+				done();
+			});			
+		});
+	});
+    </script>
+
+
+  </body>
+</html>
