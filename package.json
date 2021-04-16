@@ -26,7 +26,7 @@
     "@polymer/paper-listbox": "^3.0.1",
     "@polymer/paper-progress": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
-    "googleapis": "^36.0.0",
+    
     "sinon": "^7.2.7",
     "wct-istanbul": "^0.14.3",
     "wct-xunit-reporter": "^1.0.2",
